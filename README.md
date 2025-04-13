@@ -24,4 +24,10 @@ It uses Firestore as a NoSQL database to manage a `users` collection, allowing y
 - 🔄 Real-time updates from Firestore
 - 🔥 Seamless Firebase integration via AngularFire
 
-🔥 Firebase Setup 1. run npm install @angular/fire command on your terminal window. 2. Go to Firebase Console in firebase.google.com 1. Create a new project 2. Enable Cloud Firestore (in test mode) 3. Copy the config from your Firebase project settings 4. Paste it in the app.config.ts file
+###🔥 Firebase Setup
+ 1. run npm install @angular/fire command on your terminal window. 
+ 2. Go to Firebase Console in firebase.google.com 
+    1. Create a new project 
+    2. Enable Cloud Firestore (in test mode) 
+    3. Copy the config from your Firebase project settings 
+    4. Paste it in the app.config.ts file
