@@ -19,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
     //make sure to copy and paste firebaseConfig object from your Firebase project settings above
+    //Below two providers are needed to use Angular firebase
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore())
   
