@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  //paste the firebaseConfig information of your own Firestore project.
+  //Add your own Firebase project's firebaseConfig info goes here.
 };
 
 const firebase_app = initializeApp(firebaseConfig);
