@@ -1,0 +1,36 @@
+<div class="container w-50">
+  <div>
+    <h1>User Management</h1>
+    <input
+      type="text"
+      class="form-control w-50 mb-1"
+      [(ngModel)]="name"
+      placeholder="Enter the user name"
+    />
+  </div>
+  <div>
+    <input type="text" class="form-control w-50 mb-1" [(ngModel)]="email" placeholder="Email" />
+  </div>
+  @if(selectedUser()){
+  <div>
+    <button class="btn btn-outline-primary" (click)="updateUser()">Update User</button>
+  </div>
+  }
+  @else{
+  <div>
+    <button class="btn btn-outline-primary" (click)="addUser()">Add User</button>
+  </div>
+  }
+  <hr />
+  <div>
+    <h2>List of Users</h2>
+    @for (user of this.userService.users(); track $index) {
+      <div>
+        {{ $index + 1 }}: {{ user.id }}: {{ user.name }} : {{ user.email }}
+        <button class="btn btn-outline-secondary m-2" (click) ='selectUser(user)'>Edit</button>
+        <button class="btn btn-outline-danger m-2" (click) = 'userService.deleteUser(user.id!)'>Delete</button>
+      </div>
+    }
+  </div>
+</div>
+
