@@ -1,5 +1,5 @@
 import {Injectable,signal } from '@angular/core';
-import { addDoc, collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { addDoc, collection, getDocs, doc, updateDoc, deleteDoc, onSnapshot } from 'firebase/firestore';
 import { db } from './firebase.config';
 
 
@@ -22,36 +22,35 @@ export class UserService {
  
   // It uses Firestore's collection function to get a reference to the users collection
   private usersCollection = collection(db, 'users');
-
-  //loadUsers( ) - Fetches (READ) all user documents from Firestore, converts them 
-  // into usable objects, and update the Angular signal so the UI reacts automatically.
-  async loadUsers() {
-    const snapshot = await getDocs(this.usersCollection);
+  
+  // READ (real-time)
+loadUsers() {
+  onSnapshot(this.usersCollection, snapshot => {
     const data = snapshot.docs.map(doc => ({
       ...doc.data(),
-      id: doc.id,
-      })) as User[];
+      id: doc.id
+    })) as User[];
+
     this.users.set(data);
-  }
+  });
+}
+
 
   //CREATE
   async addUser(user: User) {
     await addDoc(this.usersCollection, user);
-    this.loadUsers();
   }
 
   //UPDATE
   async updateUser(id: string, user:Partial<User>){
     const userRef = doc(db, 'users', id);
     await updateDoc(userRef, { ...user });
-    this.loadUsers();
   }
 
   //DELETE
   async deleteUser(id:string){
     const userRef = doc(db, 'users', id);
     await deleteDoc(userRef);
-    this.loadUsers();
   }
 }
   
