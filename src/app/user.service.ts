@@ -31,10 +31,9 @@ loadUsers() {
       id: doc.id
     })) as User[];
 
-    this.users.set(data);
-  });
-}
-
+      this.users.set(data);
+    });
+  }
 
   //CREATE
   async addUser(user: User) {
